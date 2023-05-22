@@ -1,0 +1,3 @@
+process.env.KOEL_DOMAIN = 'https://mykoeldomain.com'
+process.env.KOEL_USERNAME = 'user@used.com'
+process.env.KOEL_PASSWORD = 'P4assw0rd'
