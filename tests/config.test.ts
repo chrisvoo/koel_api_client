@@ -8,17 +8,17 @@ process.env = Object.assign(process.env, {
   KOEL_PASSWORD: '',
 });
 
-test('Exception if config is missing', () => {
+it('Throws an error if config is missing', () => {
   expect(() => new Client(undefined))
     .toThrow('Missing one or more required parameters: username, password, domain')
 })
 
-test('Exception if one param is missing', () => {
+it('Throws an error if one param is missing', () => {
   expect(() => new Client({ domain: null, username: '', password: '' }))
     .toThrow('Missing one or more required parameters: username, password, domain')
 })
 
-test('Exception if one param is empty', () => {
+it('Throws an error if one param is empty', () => {
   expect(() => new Client({ domain: 'blah', username: 'blah', password: '  ' }))
     .toThrow('Missing one or more required parameters: username, password, domain')
 })

@@ -21,6 +21,10 @@ const client = new Client({
 const token = await client.getToken()
 ```
 
+## Methods
+
+* `getToken`: it retrieves a bearer token to be used to consume Koel's API. The token is valid for one week. The token won't be saved neither internally the class nor outside. Currently it must be provided to all the class' methods.
+* `search(token: string, name: string, artist: string | null = null)`: searches a song and eventually filter out results for the specified artist.
 
 ## Tests
 

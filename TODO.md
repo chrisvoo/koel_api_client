@@ -1,0 +1,1 @@
+- [ ] API 4xx error returns stacktrace (info disclosure)

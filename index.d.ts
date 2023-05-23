@@ -9,8 +9,11 @@ interface RequestParams {
   method: Dispatcher.HttpMethod
   headers?: Record<string, string | string[] | undefined> | string[] | null
   body?: string | Buffer | Uint8Array | stream.Readable | Iterable | AsyncIterable | null
+  query?: Record<string, any>
 }
 
-type RequestOptions = { dispatcher?: Dispatcher } &
-Omit<Dispatcher.RequestOptions, 'origin' | 'path' | 'method'> &
-Partial<Pick<Dispatcher.RequestOptions, 'method'>>
+type RequestOptions = Omit<Dispatcher.RequestOptions, 'path'>
+
+interface AuthHeader {
+  Authorization: string
+}

@@ -52,10 +52,12 @@ export default class Client {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        'X-Api-Version': 'v6',
         ...options.headers
       },
       body: JSON.stringify(options.body),
-      method: options.method
+      method: options.method,
+      query: options.query
     }
 
     return await request(new URL(endpoint, this.domain), finalOptions)
@@ -76,6 +78,12 @@ export default class Client {
     return response
   }
 
+  private bearerToken (token: string): AuthHeader {
+    return {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
   /**
    * Login a user
    * @returns The bearer token
@@ -88,5 +96,18 @@ export default class Client {
 
     const response = await this.getJsonResponse(data)
     return response.token
+  }
+
+  public async search (token: string, name: string, artist: string | null = null): Promise<any> {
+    const data = await this.doRequest('/api/search/songs', {
+      method: 'GET',
+      query: {
+        q: name
+      },
+      headers: this.bearerToken(token)
+    })
+
+    const response = await this.getJsonResponse(data)
+    return response
   }
 }
